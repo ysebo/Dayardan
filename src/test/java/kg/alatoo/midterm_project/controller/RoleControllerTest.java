@@ -13,9 +13,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 import java.util.List;
-import kg.alatoo.midterm_project.controller.api.CategoryController;
-import kg.alatoo.midterm_project.payload.response.CategoryResponse;
-import kg.alatoo.midterm_project.service.CategoryService;
+import kg.alatoo.midterm_project.controller.api.RoleController;
+import kg.alatoo.midterm_project.payload.response.RoleResponse;
+import kg.alatoo.midterm_project.service.RoleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,78 +23,77 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-@WebMvcTest(CategoryController.class)
-class CategoryControllerTest {
+@WebMvcTest(RoleController.class)
+class RoleControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
 
   @MockitoBean
-  private CategoryService categoryService;
+  private RoleService roleService;
 
-  private CategoryResponse category1;
-  private CategoryResponse category2;
+  private RoleResponse role1;
+  private RoleResponse role2;
 
   @BeforeEach
   void setUp() {
-    category1 = new CategoryResponse(1L, "Java");
-    category2 = new CategoryResponse(2L, "Spring Boot");
+    role1 = new RoleResponse(1L, "ADMIN");
+    role2 = new RoleResponse(2L, "USER");
   }
 
   @Test
-  void getAllCategories_ShouldReturnListOfCategories() throws Exception {
-    List<CategoryResponse> categories = Arrays.asList(category1, category2);
-    when(categoryService.getAllCategories()).thenReturn(categories);
+  void getAllRoles_ShouldReturnListOfRoles() throws Exception {
+    List<RoleResponse> roles = Arrays.asList(role1, role2);
+    when(roleService.getAllRoles()).thenReturn(roles);
 
-    mockMvc.perform(get("/api/categories/get-all"))
+    mockMvc.perform(get("/api/roles/get-all"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.size()").value(2))
         .andExpect(jsonPath("$[0].id").value(1))
-        .andExpect(jsonPath("$[0].name").value("Java"))
+        .andExpect(jsonPath("$[0].name").value("ADMIN"))
         .andExpect(jsonPath("$[1].id").value(2))
-        .andExpect(jsonPath("$[1].name").value("Spring Boot"));
+        .andExpect(jsonPath("$[1].name").value("USER"));
   }
 
   @Test
-  void getCategoryById_ShouldReturnCategory() throws Exception {
-    when(categoryService.getCategoryById(1L)).thenReturn(category1);
+  void getRoleById_ShouldReturnRole() throws Exception {
+    when(roleService.getRoleById(1L)).thenReturn(role1);
 
-    mockMvc.perform(get("/api/categories/get/1"))
+    mockMvc.perform(get("/api/roles/get/1"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.id").value(1))
-        .andExpect(jsonPath("$.name").value("Java"));
+        .andExpect(jsonPath("$.name").value("ADMIN"));
   }
 
   @Test
-  void createCategory_ShouldReturnCreatedCategory() throws Exception {
-    when(categoryService.createCategory(any())).thenReturn(category1);
+  void createRole_ShouldReturnCreatedRole() throws Exception {
+    when(roleService.createRole(any())).thenReturn(role1);
 
-    mockMvc.perform(post("/api/categories/create")
-            .param("name", "Java")
+    mockMvc.perform(post("/api/roles/create")
+            .param("name", "ADMIN")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated())
         .andExpect(jsonPath("$.id").value(1))
-        .andExpect(jsonPath("$.name").value("Java"));
+        .andExpect(jsonPath("$.name").value("ADMIN"));
   }
 
   @Test
-  void updateCategory_ShouldReturnUpdatedCategory() throws Exception {
-    when(categoryService.updateCategory(anyLong(), any())).thenReturn(category2);
+  void updateRole_ShouldReturnUpdatedRole() throws Exception {
+    when(roleService.updateRole(anyLong(), any())).thenReturn(role2);
 
-    mockMvc.perform(put("/api/categories/update/1")
-            .param("name", "Spring Boot")
+    mockMvc.perform(put("/api/roles/update/1")
+            .param("name", "USER")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.id").value(2))
-        .andExpect(jsonPath("$.name").value("Spring Boot"));
+        .andExpect(jsonPath("$.name").value("USER"));
   }
 
   @Test
-  void deleteCategory_ShouldReturnNoContent() throws Exception {
-    doNothing().when(categoryService).deleteCategory(anyLong());
+  void deleteRole_ShouldReturnNoContent() throws Exception {
+    doNothing().when(roleService).deleteRole(anyLong());
 
-    mockMvc.perform(delete("/api/categories/delete/1"))
+    mockMvc.perform(delete("/api/roles/delete/1"))
         .andExpect(status().isNoContent());
   }
 }
