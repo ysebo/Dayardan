@@ -43,4 +43,15 @@ public class Question {
   private Category category;
   @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
   private List<Answer> answers;
+
+  public Question(String title, String description, Difficulty difficulty, QuestionType type,
+      String correctAnswer, Category category, List<Answer> answers) {
+    this.title = title;
+    this.description = description;
+    this.difficulty = difficulty;
+    this.type = type;
+    this.correctAnswer = correctAnswer;
+    this.category = category;
+    this.answers = answers;
+  }
 }
