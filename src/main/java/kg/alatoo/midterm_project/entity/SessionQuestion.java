@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +25,12 @@ public class SessionQuestion {
 
   @ManyToOne
   @JoinColumn(name = "session_id", nullable = false)
+  @NotNull(message = "InterviewSession cannot be null")
   private InterviewSession session;
 
   @ManyToOne
   @JoinColumn(name = "question_id", nullable = false)
+  @NotNull(message = "Question cannot be null")
   private Question question;
   @OneToMany(mappedBy = "sessionQuestion", cascade = CascadeType.ALL)
   private List<InterviewAnswer> answers;
