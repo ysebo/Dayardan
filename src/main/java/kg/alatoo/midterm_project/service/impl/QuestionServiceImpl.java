@@ -43,14 +43,13 @@ public class QuestionServiceImpl implements QuestionService {
     question.setType(request.type());
     question.setCorrectAnswer(request.correctAnswer());
     question.setAnswers(request.answers());
-    return questionMapper.toQuestionResponse(questionRepository.save(question));
+    Question savedQuestion = questionRepository.save(question);
+    return questionMapper.toQuestionResponse(savedQuestion);
   }
 
   public void deleteQuestion(Long id) {
     questionRepository.deleteById(id);
   }
 
-  public List<QuestionResponse> getRandomQuestions(int count) {
-    return null;
-  }
+
 }

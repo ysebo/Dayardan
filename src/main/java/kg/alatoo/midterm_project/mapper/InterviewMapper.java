@@ -2,12 +2,10 @@ package kg.alatoo.midterm_project.mapper;
 
 import kg.alatoo.midterm_project.entity.InterviewAnswer;
 import kg.alatoo.midterm_project.entity.InterviewSession;
-import kg.alatoo.midterm_project.entity.Question;
 import kg.alatoo.midterm_project.entity.SessionQuestion;
 import kg.alatoo.midterm_project.payload.response.InterviewAnswerResponse;
 import kg.alatoo.midterm_project.payload.response.InterviewSessionQuestionDTO;
 import kg.alatoo.midterm_project.payload.response.InterviewSessionResponse;
-import kg.alatoo.midterm_project.payload.response.QuestionResponse;
 import org.springframework.stereotype.Component;
 
 @Component
