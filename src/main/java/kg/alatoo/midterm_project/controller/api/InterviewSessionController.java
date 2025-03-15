@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/interviews")
 @RequiredArgsConstructor
 public class InterviewSessionController {
-    private final InterviewSessionService interviewSessionService;
+
+  private final InterviewSessionService interviewSessionService;
+
 
   @PostMapping("/start/{userId}")
   public ResponseEntity<InterviewSessionResponse> startInterview(@PathVariable Long userId) {
@@ -29,8 +31,10 @@ public class InterviewSessionController {
   }
 
   @GetMapping("/{sessionId}/questions")
-  public ResponseEntity<List<InterviewSessionQuestionDTO>> getInterviewQuestions(@PathVariable Long sessionId) {
-    return new ResponseEntity<>(interviewSessionService.getSessionQuestions(sessionId), HttpStatus.OK);
+  public ResponseEntity<List<InterviewSessionQuestionDTO>> getInterviewQuestions(
+      @PathVariable Long sessionId) {
+    return new ResponseEntity<>(interviewSessionService.getSessionQuestions(sessionId),
+        HttpStatus.OK);
   }
 
   @PostMapping("/{sessionId}/answer")
@@ -38,6 +42,7 @@ public class InterviewSessionController {
       @PathVariable Long sessionId,
       @Valid @RequestBody InterviewRequest submission
   ) {
-    return new ResponseEntity<>(interviewSessionService.submitAnswer(sessionId, submission), HttpStatus.CREATED);
+    return new ResponseEntity<>(interviewSessionService.submitAnswer(sessionId, submission),
+        HttpStatus.CREATED);
   }
 }

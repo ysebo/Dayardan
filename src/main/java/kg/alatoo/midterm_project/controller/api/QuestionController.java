@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/questions")
 @RequiredArgsConstructor
 public class QuestionController {
+
   private final QuestionService questionService;
+
+
   @GetMapping
   public ResponseEntity<List<QuestionResponse>> getAllQuestions() {
     return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
@@ -33,12 +36,15 @@ public class QuestionController {
   }
 
   @PostMapping
-  public ResponseEntity<QuestionResponse> createQuestion(@Valid @RequestBody QuestionRequest questionRequest) {
-    return new ResponseEntity<>(questionService.createQuestion(questionRequest), HttpStatus.CREATED);
+  public ResponseEntity<QuestionResponse> createQuestion(
+      @Valid @RequestBody QuestionRequest questionRequest) {
+    return new ResponseEntity<>(questionService.createQuestion(questionRequest),
+        HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<QuestionResponse> updateQuestion(@PathVariable Long id, @Valid @RequestBody QuestionRequest questionRequest) {
+  public ResponseEntity<QuestionResponse> updateQuestion(@PathVariable Long id,
+      @Valid @RequestBody QuestionRequest questionRequest) {
     return new ResponseEntity<>(questionService.updateQuestion(id, questionRequest), HttpStatus.OK);
   }
 
@@ -48,9 +54,5 @@ public class QuestionController {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
-  @GetMapping("/random/{count}")
-  public ResponseEntity<List<QuestionResponse>> getRandomQuestions(@PathVariable int count) {
-    return new ResponseEntity<>(questionService.getRandomQuestions(count), HttpStatus.OK);
-  }
 
 }

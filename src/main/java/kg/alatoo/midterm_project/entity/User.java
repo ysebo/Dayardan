@@ -37,7 +37,7 @@ public class User {
   private LocalDateTime updatedAt;
 
   @ManyToOne
-  private Role role;
+  private UserRole userRole;
 
   @PrePersist
   protected void onCreate() {

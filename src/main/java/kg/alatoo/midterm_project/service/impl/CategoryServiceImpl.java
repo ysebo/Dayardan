@@ -27,6 +27,13 @@ public class CategoryServiceImpl implements CategoryService {
         .orElseThrow(() -> new NotFoundException("Category not found"));
   }
 
+  public CategoryResponse createCategory(String name) {
+    Category category = new Category();
+    category.setName(name);
+    Category savedCategory = categoryRepository.save(category);
+    return new CategoryResponse(savedCategory.getId(), savedCategory.getName());
+  }
+
   public CategoryResponse updateCategory(Long id, String name) {
     Category category = categoryRepository.findById(id)
         .orElseThrow(() -> new NotFoundException("Category not found"));

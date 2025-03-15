@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ public class CategoryController {
 
   private final CategoryService categoryService;
 
+
   @GetMapping
   public ResponseEntity<List<CategoryResponse>> getAllCategories() {
     return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
@@ -29,6 +31,11 @@ public class CategoryController {
   @GetMapping("/{id}")
   public ResponseEntity<CategoryResponse> getCategoryById(@PathVariable Long id) {
     return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
+  }
+
+  @PostMapping
+  public ResponseEntity<CategoryResponse> createCategory(@RequestParam("name") String name) {
+    return new ResponseEntity<>(categoryService.createCategory(name), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
