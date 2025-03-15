@@ -4,5 +4,4 @@ public record InterviewRequest(
     Long sessionId,
     String answer
 ) {
-
 }

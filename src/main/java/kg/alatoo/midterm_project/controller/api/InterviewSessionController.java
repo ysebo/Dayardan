@@ -25,12 +25,12 @@ public class InterviewSessionController {
 
   @PostMapping("/start/{userId}")
   public ResponseEntity<InterviewSessionResponse> startInterview(@PathVariable Long userId) {
-    return new ResponseEntity<>(interviewSessionService.startInterview(userId), HttpStatus.CREATED);
+    return new ResponseEntity<>(interviewSessionService.startSession(userId), HttpStatus.CREATED);
   }
 
   @GetMapping("/{sessionId}/questions")
   public ResponseEntity<List<InterviewSessionQuestionDTO>> getInterviewQuestions(@PathVariable Long sessionId) {
-    return new ResponseEntity<>(interviewSessionService.getInterviewQuestions(sessionId), HttpStatus.OK);
+    return new ResponseEntity<>(interviewSessionService.getSessionQuestions(sessionId), HttpStatus.OK);
   }
 
   @PostMapping("/{sessionId}/answer")

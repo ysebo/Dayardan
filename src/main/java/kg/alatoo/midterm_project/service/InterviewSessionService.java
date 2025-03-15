@@ -9,9 +9,9 @@ import kg.alatoo.midterm_project.payload.response.InterviewSessionResponse;
 
 public interface InterviewSessionService {
 
-  InterviewSessionResponse startInterview(Long userId);
+  InterviewSessionResponse startSession(Long userId);
 
-  List<InterviewSessionQuestionDTO> getInterviewQuestions(Long sessionId);
+  List<InterviewSessionQuestionDTO> getSessionQuestions(Long sessionId);
 
   InterviewAnswerResponse submitAnswer(Long sessionId, InterviewRequest submission);
 }
