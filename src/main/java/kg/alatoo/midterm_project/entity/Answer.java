@@ -10,7 +10,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -18,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "answers")
 public class Answer {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -32,4 +35,12 @@ public class Answer {
   @NotNull
   private Question question;
 
+  public Answer() {
+  }
+
+  public Answer(Long id, String content, boolean isCorrect) {
+    this.id = id;
+    this.content = content;
+    this.isCorrect = isCorrect;
+  }
 }
