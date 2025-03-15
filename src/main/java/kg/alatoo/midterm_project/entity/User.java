@@ -43,7 +43,6 @@ public class User {
   private LocalDateTime updatedAt;
 
   @ManyToOne
-  @NotNull(message = "User role must be specified")
   private UserRole userRole;
 
   @PrePersist

@@ -12,7 +12,6 @@ import kg.alatoo.midterm_project.entity.User;
 import kg.alatoo.midterm_project.entity.UserRole;
 import kg.alatoo.midterm_project.enums.Difficulty;
 import kg.alatoo.midterm_project.enums.QuestionType;
-import kg.alatoo.midterm_project.exceptions.NotLegalArgumentException;
 import kg.alatoo.midterm_project.repository.AnswerRepository;
 import kg.alatoo.midterm_project.repository.CategoryRepository;
 import kg.alatoo.midterm_project.repository.QuestionRepository;
@@ -144,7 +143,7 @@ public class BootstrapDataLoader implements CommandLineRunner {
 
         Optional<UserRole> roleOptional = roleRepository.findById(Long.parseLong(line[4]));
         if (roleOptional.isEmpty()) {
-          System.err.println("Role not found for ID: " + line[4]);
+          System.err.println("Role not found for id: " + line[4]);
           continue;
         }
         user.setUserRole(roleOptional.get());
