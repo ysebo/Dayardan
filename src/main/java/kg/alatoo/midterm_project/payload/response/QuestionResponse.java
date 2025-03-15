@@ -1,7 +1,6 @@
 package kg.alatoo.midterm_project.payload.response;
 
 import java.util.List;
-import kg.alatoo.midterm_project.entity.Answer;
 import kg.alatoo.midterm_project.enums.Difficulty;
 import kg.alatoo.midterm_project.enums.QuestionType;
 
@@ -13,6 +12,6 @@ public record QuestionResponse(
     Difficulty difficulty,
     String correctAnswer,
     QuestionType type,
-    List<Answer> answers
+    List<AnswerResponse> answers
 ) {
 }

@@ -25,30 +25,30 @@ public class QuestionController {
   private final QuestionService questionService;
 
 
-  @GetMapping
+  @GetMapping("/get-all")
   public ResponseEntity<List<QuestionResponse>> getAllQuestions() {
     return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/get/{id}")
   public ResponseEntity<QuestionResponse> getQuestionById(@PathVariable Long id) {
     return new ResponseEntity<>(questionService.getQuestionById(id), HttpStatus.OK);
   }
 
-  @PostMapping
+  @PostMapping("/create")
   public ResponseEntity<QuestionResponse> createQuestion(
       @Valid @RequestBody QuestionRequest questionRequest) {
     return new ResponseEntity<>(questionService.createQuestion(questionRequest),
         HttpStatus.CREATED);
   }
 
-  @PutMapping("/{id}")
+  @PutMapping("/update/{id}")
   public ResponseEntity<QuestionResponse> updateQuestion(@PathVariable Long id,
       @Valid @RequestBody QuestionRequest questionRequest) {
     return new ResponseEntity<>(questionService.updateQuestion(id, questionRequest), HttpStatus.OK);
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<?> deleteQuestion(@PathVariable Long id) {
     questionService.deleteQuestion(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);

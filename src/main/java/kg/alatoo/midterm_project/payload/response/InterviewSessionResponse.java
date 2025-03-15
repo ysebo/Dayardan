@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public record InterviewSessionResponse(
     Long id,
     Long userId,
-    LocalDateTime startedAt,
-    LocalDateTime endedAt) {
+    LocalDateTime startedAt) {
 
 }

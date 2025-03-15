@@ -1,5 +1,5 @@
 package kg.alatoo.midterm_project.enums;
 
 public enum QuestionType {
-  SINGLE_CHOICE, MULTIPLE_CHOICE, TEXT_INPUT,TRUE_FALSE
+  SINGLE_CHOICE, MULTIPLE_CHOICE, TEXT_INPUT,TRUE_FALSE, CODING, SHORT_ANSWER
 }

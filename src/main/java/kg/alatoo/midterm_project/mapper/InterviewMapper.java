@@ -20,15 +20,13 @@ public class InterviewMapper {
     return new InterviewSessionResponse(
         session.getId(),
         session.getUser().getId(),
-        session.getStartedAt(),
-        session.getFinishedAt()
+        session.getStartedAt()
     );
   }
 
   public InterviewSessionQuestionDTO toModel(SessionQuestion sessionQuestion) {
     return new InterviewSessionQuestionDTO(
         sessionQuestion.getId(),
-        sessionQuestion.getSession().getId(),
         questionMapper.toQuestionResponse(sessionQuestion.getQuestion())
     );
   }
@@ -38,6 +36,7 @@ public class InterviewMapper {
     return new InterviewAnswerResponse(
         answer.getId(),
         answer.getSessionQuestion().getSession().getId(),
+        answer.getSessionQuestion().getQuestion().getId(),
         answer.getUserAnswer(),
         answer.isCorrect()
     );

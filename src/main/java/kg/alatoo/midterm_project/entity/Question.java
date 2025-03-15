@@ -16,6 +16,7 @@ import java.util.List;
 import kg.alatoo.midterm_project.enums.Difficulty;
 import kg.alatoo.midterm_project.enums.QuestionType;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -44,14 +45,18 @@ public class Question {
   @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
   private List<Answer> answers;
 
+  public Question() {
+
+  }
+
   public Question(String title, String description, Difficulty difficulty, QuestionType type,
-      String correctAnswer, Category category, List<Answer> answers) {
+      String correctAnswer, Category category) {
     this.title = title;
     this.description = description;
     this.difficulty = difficulty;
     this.type = type;
     this.correctAnswer = correctAnswer;
     this.category = category;
-    this.answers = answers;
   }
+
 }
