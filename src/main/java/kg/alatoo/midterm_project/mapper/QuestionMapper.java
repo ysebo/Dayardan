@@ -15,12 +15,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class QuestionMapper {
-    private final CategoryRepository categoryRepository;
-
-  public QuestionMapper(CategoryRepository categoryRepository) {
-    this.categoryRepository = categoryRepository;
-  }
-
     public QuestionResponse toQuestionResponse(Question question) {
         return new QuestionResponse(
             question.getId(),
@@ -46,6 +40,7 @@ public class QuestionMapper {
         List<Answer> answers = request.answers().stream()
             .map(answerDto -> {
                 Answer answer = new Answer();
+                answer.setId(answerDto.getId());
                 answer.setContent(answerDto.getContent());
                 answer.setCorrect(answerDto.isCorrect());
                 answer.setQuestion(question);
@@ -66,7 +61,4 @@ public class QuestionMapper {
             answer.isCorrect()
         );
     }
-
-
-
 }
