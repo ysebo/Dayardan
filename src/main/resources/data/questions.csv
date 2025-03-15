@@ -1,0 +1,10 @@
+id,title,categoryId,description,difficulty,correctAnswer,type
+1,What is the primary purpose of the HTTP protocol?,2,Select the correct purpose of HTTP.,EASY,To transfer hypertext requests and information on the World Wide Web.,MULTIPLE_CHOICE
+2,Which of the following is NOT a Java keyword?,2,Select the option that is not a valid Java keyword.,EASY,goto,MULTIPLE_CHOICE
+3,What is the default value of a local variable in Java?,2,Select the correct default value for a local variable in Java.,MEDIUM,Local variables do not have default values.,MULTIPLE_CHOICE
+4,What is the output of the following code snippet? `System.out.println(10 + 20 + "30");`,2,Determine the output of the given Java code.,MEDIUM,3030,MULTIPLE_CHOICE
+5,Which collection class allows you to associate a key with a value?,2,Select the correct collection class for key-value pairs.,EASY,HashMap,MULTIPLE_CHOICE
+6,What is the superclass of all classes in Java?,2,Select the correct superclass for all Java classes.,EASY,Object,MULTIPLE_CHOICE
+7,What is the purpose of the `final` keyword in Java?,2,Select the correct purpose of the `final` keyword.,MEDIUM,To restrict modification,MULTIPLE_CHOICE
+9,Which of the following is true about method overloading in Java?,2,Select the correct statement about method overloading.,MEDIUM,Methods must have the same name but different parameters.,MULTIPLE_CHOICE
+10,What is the output of `System.out.println(0.1 + 0.2 == 0.3);`?,2,Determine the output of the given Java code.,HARD,false,MULTIPLE_CHOICE

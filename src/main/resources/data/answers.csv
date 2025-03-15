@@ -1,0 +1,41 @@
+id,questionId,content,correct
+1,1,To transfer hypertext requests and information on the World Wide Web.,true
+2,1,To securely encrypt data over the internet.,false
+3,1,To connect a database to a web application.,false
+4,1,To manage user authentication on websites.,false
+5,2,goto,true
+6,2,const,false
+7,2,static,false
+8,2,volatile,false
+9,3,Local variables do not have default values.,true
+10,3,0,false
+11,3,null,false
+12,3,false,false
+13,4,3030,true
+14,4,102030,false
+15,4,30,false
+16,4,60,false
+17,5,HashMap,true
+18,5,ArrayList,false
+19,5,LinkedList,false
+20,5,HashSet,false
+21,6,Object,true
+22,6,String,false
+23,6,Class,false
+24,6,Main,false
+25,7,To restrict modification,true
+26,7,To allow inheritance,false
+27,7,To enable polymorphism,false
+28,7,To define a constant,false
+29,8,0.0,true
+30,8,4.9E-324,false
+31,8,1.0,false
+32,8,Infinity,false
+33,9,Methods must have the same name but different parameters.,true
+34,9,Methods must have different names.,false
+35,9,Methods must have the same return type.,false
+36,9,Methods must be in different classes.,false
+37,10,false,true
+38,10,true,false
+39,10,0.3,false
+40,10,0.30000000000000004,false

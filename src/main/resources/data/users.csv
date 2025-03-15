@@ -1,0 +1,3 @@
+id,username,email,password,roleId
+1,admin,admin@alatoo.edu.kg,admin123,1
+2,user,user@alatoo.edu.kg,user123,2
