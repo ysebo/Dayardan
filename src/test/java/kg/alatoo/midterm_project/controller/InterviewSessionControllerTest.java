@@ -4,20 +4,22 @@ package kg.alatoo.midterm_project.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-
 import kg.alatoo.midterm_project.controller.api.InterviewSessionController;
 import kg.alatoo.midterm_project.enums.Difficulty;
 import kg.alatoo.midterm_project.enums.QuestionType;
 import kg.alatoo.midterm_project.payload.request.InterviewRequest;
 import kg.alatoo.midterm_project.payload.response.AnswerResponse;
-import kg.alatoo.midterm_project.payload.response.InterviewSessionQuestionDTO;
 import kg.alatoo.midterm_project.payload.response.InterviewAnswerResponse;
+import kg.alatoo.midterm_project.payload.response.InterviewSessionQuestionDTO;
 import kg.alatoo.midterm_project.payload.response.InterviewSessionResponse;
 import kg.alatoo.midterm_project.payload.response.QuestionResponse;
 import kg.alatoo.midterm_project.service.InterviewSessionService;
@@ -25,10 +27,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(InterviewSessionController.class)
 class InterviewSessionControllerTest {
@@ -36,7 +37,7 @@ class InterviewSessionControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
-  @MockitoBean
+  @MockBean
   private InterviewSessionService interviewSessionService;
 
   @Autowired

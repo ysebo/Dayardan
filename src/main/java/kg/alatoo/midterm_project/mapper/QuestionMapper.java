@@ -37,15 +37,13 @@ public class QuestionMapper {
         question.setType(request.type());
         question.setCategory(category);
 
-        List<Answer> answers = request.answers().stream()
-            .map(answerDto -> {
-                Answer answer = new Answer();
-                answer.setId(answerDto.getId());
-                answer.setContent(answerDto.getContent());
-                answer.setCorrect(answerDto.isCorrect());
-                answer.setQuestion(question);
-                return answer;
-            }).collect(Collectors.toList());
+      List<Answer> answers = request.answers().stream().map(answerRequest -> {
+        Answer answer = new Answer();
+        answer.setContent(answerRequest.content());
+        answer.setCorrect(answerRequest.correct());
+        answer.setQuestion(question);
+        return answer;
+      }).toList();
       if (request.type() != QuestionType.MULTIPLE_CHOICE) {
         question.setCorrectAnswer(request.correctAnswer());
       }

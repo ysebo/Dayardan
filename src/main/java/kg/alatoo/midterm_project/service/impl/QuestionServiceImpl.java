@@ -45,7 +45,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     if (request.type() == QuestionType.MULTIPLE_CHOICE) {
       boolean hasCorrectAnswer = request.answers().stream()
-          .anyMatch(answer -> answer.isCorrect());
+          .anyMatch(answer -> answer.correct());
       if (!hasCorrectAnswer) {
         throw new NotLegalArgumentException("Multiple choice questions must have at least one correct answer");
       }
