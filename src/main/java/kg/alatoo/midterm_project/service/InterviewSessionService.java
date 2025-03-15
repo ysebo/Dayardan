@@ -1,6 +1,5 @@
 package kg.alatoo.midterm_project.service;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import kg.alatoo.midterm_project.payload.request.InterviewRequest;
 import kg.alatoo.midterm_project.payload.response.InterviewAnswerResponse;
