@@ -125,8 +125,7 @@ mvn test
 ### Custom exceptions are handled globally using @RestControllerAdvice. Examples include:
 ```
 - NotFoundException: Returns HTTP 404.
-- RoomAlreadyExists: Returns HTTP 400.
-- RoomConflictException: Returns HTTP 409.
+- NotLegalArgumentException: Returns HTTP 400.
 ```
 
 --
