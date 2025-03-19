@@ -1,5 +1,6 @@
 package kg.alatoo.midterm_project.mapper;
 
+import kg.alatoo.midterm_project.payload.request.AnswerRequest;
 import kg.alatoo.midterm_project.payload.response.AnswerResponse;
 import kg.alatoo.midterm_project.payload.request.QuestionRequest;
 import kg.alatoo.midterm_project.payload.response.QuestionResponse;
@@ -73,9 +74,9 @@ class QuestionMapperTest {
     Question question = new Question();
     Category category = new Category(1L, "Programming");
 
-    List<Answer> answers1 = Arrays.asList(
-        new Answer(1L, "Java is a scripting language.", false),
-        new Answer(2L, "Java is a programming language.", true)
+    List<AnswerRequest> answers1 = Arrays.asList(
+        new AnswerRequest( "Java is a scripting language.", false),
+        new AnswerRequest( "Java is a programming language.", true)
     );
 
     QuestionRequest request = new QuestionRequest(

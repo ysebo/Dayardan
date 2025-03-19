@@ -18,7 +18,6 @@ public class UserRole {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @NotBlank(message = "Role name cannot be blank")
   private String name;
 
 }

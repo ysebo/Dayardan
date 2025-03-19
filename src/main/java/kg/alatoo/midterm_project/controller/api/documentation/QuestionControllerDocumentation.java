@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 @RequestMapping("/api/questions")
 @Tag(name = "Question Controller", description = "APIs for managing questions")
 public interface QuestionControllerDocumentation {

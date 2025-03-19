@@ -25,14 +25,12 @@ public class Answer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(nullable = false)
-  @NotBlank(message = "Content cannot be blank")
   private String content;
   @Column(nullable = false)
   private boolean isCorrect;
 
   @ManyToOne
   @JoinColumn(name = "question_id")
-  @NotNull
   private Question question;
 
   public Answer() {

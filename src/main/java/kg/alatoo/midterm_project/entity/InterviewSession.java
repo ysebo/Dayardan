@@ -13,7 +13,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,6 @@ public class InterviewSession {
   private Long id;
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
-  @NotNull(message = "User cannot be null")
   private User user;
   @Column(nullable = false)
   private LocalDateTime startedAt;

@@ -30,7 +30,6 @@ public class SessionQuestion {
 
   @ManyToOne
   @JoinColumn(name = "question_id", nullable = false)
-  @NotNull(message = "Question cannot be null")
   private Question question;
   @OneToMany(mappedBy = "sessionQuestion", cascade = CascadeType.ALL)
   private List<InterviewAnswer> answers;
