@@ -9,15 +9,18 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:h2:mem:interview_db
+    url: jdbc:h2:file:./data/interview_db
     driver-class-name: org.h2.Driver
     username: sa
     password:
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
 
 ---
 spring:

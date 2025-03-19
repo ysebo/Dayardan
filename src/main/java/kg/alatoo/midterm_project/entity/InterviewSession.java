@@ -14,7 +14,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import kg.alatoo.midterm_project.enums.InterviewStatus;
 import lombok.Getter;
@@ -37,5 +36,5 @@ public class InterviewSession {
   @Enumerated(EnumType.STRING)
   private InterviewStatus status;
   @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private List<SessionQuestion> sessionQuestions = new ArrayList<>();
+  private List<SessionQuestion> sessionQuestions;
 }

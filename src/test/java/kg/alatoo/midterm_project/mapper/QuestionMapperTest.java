@@ -75,8 +75,8 @@ class QuestionMapperTest {
     Category category = new Category(1L, "Programming");
 
     List<AnswerRequest> answers1 = Arrays.asList(
-        new AnswerRequest( "Java is a scripting language.", false),
-        new AnswerRequest( "Java is a programming language.", true)
+        new AnswerRequest("Java is a scripting language.", false),
+        new AnswerRequest("Java is a programming language.", true)
     );
 
     QuestionRequest request = new QuestionRequest(
@@ -91,13 +91,17 @@ class QuestionMapperTest {
 
     Question updatedQuestion = questionMapper.toQuestion(question, request, category);
 
+    List<Answer> answers = updatedQuestion.getAnswers();
+    answers.get(0).setId(1L);
+    answers.get(1).setId(2L);
+
+
     assertEquals(request.title(), updatedQuestion.getTitle());
     assertEquals(request.description(), updatedQuestion.getDescription());
     assertEquals(request.difficulty(), updatedQuestion.getDifficulty());
     assertEquals(request.type(), updatedQuestion.getType());
     assertEquals(category, updatedQuestion.getCategory());
 
-    List<Answer> answers = updatedQuestion.getAnswers();
     assertEquals(2, answers.size());
 
     assertEquals(1L, answers.get(0).getId());

@@ -139,7 +139,7 @@ class InterviewSessionControllerTest {
 
   @Test
   void submitAnswer_ShouldReturnAnswerResponse() throws Exception {
-    InterviewRequest request = new InterviewRequest(101L, "Java is a programming language.");
+    InterviewRequest request = new InterviewRequest(101L, 1L,"Java is a programming language.");
     when(interviewSessionService.submitAnswer(anyLong(), any(InterviewRequest.class)))
         .thenReturn(answerResponse);
 
