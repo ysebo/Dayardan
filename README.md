@@ -12,6 +12,8 @@ The Interview Preparation System is a Spring Boot-based backend application desi
 7. [Endpoints](#endpoints)
 8. [Exception Handling](#exception-handling)
 9. [Data Validation](#data-validation)
+10. [Security Implementation](#security-implementation)
+11. [Endpoint Security](#endpoint-security)
     
 ## Features
 - **Dynamic interview session creation**
@@ -23,7 +25,10 @@ The Interview Preparation System is a Spring Boot-based backend application desi
 - **API Documentation**: Automatically generated API documentation using **OpenAPI** and **Swagger UI**.
 - **Unit and Integration Testing**: Comprehensive testing for repositories, services, controllers, and exception handlers.
 - **Database Profiles**: Supports **H2** for development and **PostgreSQL** for production.
-
+- **Role-based access control (Admin/User)**
+- **JWT authentication with refresh tokens**
+- **OAuth2 social login integration**
+- **Rate limiting and IP blacklisting**
 ## Technologies Used
 ```  
 - Spring Boot: Backend framework for building the application.
@@ -32,6 +37,7 @@ The Interview Preparation System is a Spring Boot-based backend application desi
 - H2 Database: In-memory database for development.
 - PostgreSQL: Production-ready relational database.
 - OpenAPI & Swagger UI: For API documentation.
+- Security: Spring Security, JWT, OAuth2
 - Mockito & MockMVC: For unit and integration testing.
 - Lombok: For reducing boilerplate code.
 - Maven: For dependency management and build automation.
@@ -134,4 +140,49 @@ mvn test
 ```
 - @NotNull, @NotEmpty, @Size, @Email, etc.
 ```
-  
+
+## Security Implementation
+### The system uses a multi-layered security approach
+```
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/auth/**", "/swagger-ui/**").permitAll()
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .oauth2Login(oauth2 -> oauth2
+                .successHandler(oAuth2SuccessHandler)
+                .userInfoEndpoint(userInfo -> userInfo
+                    .userService(customOAuth2UserService)
+                )
+            )
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
+}
+```
+
+## Endpoint Security
+```
+Endpoint Category	Access Level	Example Endpoints
+Authentication	    Public	             /api/auth/**
+Admin Management	ROLE_ADMIN required	/api//roles/**
+User Interviews	    Authenticated users	/api/interviews/**
+API Documentation	Public	            /swagger-ui/**
+```
+## Test security with:
+```
+curl -H "Authorization: Bearer USER_TOKEN" http://localhost:8080/api//roles
+#for authenticated users
+curl http://localhost:8080/api/interviews/start/1
+```

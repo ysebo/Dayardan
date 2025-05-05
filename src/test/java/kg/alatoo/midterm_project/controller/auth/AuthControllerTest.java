@@ -13,6 +13,7 @@ import kg.alatoo.midterm_project.repository.UserRepository;
 import kg.alatoo.midterm_project.security.SecurityConfig;
 import kg.alatoo.midterm_project.service.AuthService;
 import kg.alatoo.midterm_project.service.RefreshTokenService;
+import kg.alatoo.midterm_project.service.impl.IpBlacklistService;
 import kg.alatoo.midterm_project.service.impl.JwtService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,8 @@ class AuthControllerTest {
   private AuthService authService;
   @MockBean
   private RefreshTokenService refreshTokenService;
+  @MockBean
+  private IpBlacklistService ipBlacklistService;
   @MockBean
   private JwtAuthenticationFilter jwtAuthenticationFilter;
   @MockBean
