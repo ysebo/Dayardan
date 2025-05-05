@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(CategoryController.class)
@@ -43,6 +44,8 @@ class CategoryControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void getAllCategories_ShouldReturnListOfCategories() throws Exception {
     List<CategoryResponse> categories = Arrays.asList(category1, category2);
     when(categoryService.getAllCategories()).thenReturn(categories);
@@ -57,6 +60,8 @@ class CategoryControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void getCategoryById_ShouldReturnCategory() throws Exception {
     when(categoryService.getCategoryById(1L)).thenReturn(category1);
 
@@ -67,6 +72,8 @@ class CategoryControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void createCategory_ShouldReturnCreatedCategory() throws Exception {
     when(categoryService.createCategory(any())).thenReturn(category1);
 
@@ -79,6 +86,8 @@ class CategoryControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void updateCategory_ShouldReturnUpdatedCategory() throws Exception {
     when(categoryService.updateCategory(anyLong(), any())).thenReturn(category2);
 
@@ -91,6 +100,8 @@ class CategoryControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void deleteCategory_ShouldReturnNoContent() throws Exception {
     doNothing().when(categoryService).deleteCategory(anyLong());
 

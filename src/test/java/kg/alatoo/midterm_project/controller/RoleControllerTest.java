@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(RoleController.class)
 class RoleControllerTest {
@@ -42,6 +43,8 @@ class RoleControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void getAllRoles_ShouldReturnListOfRoles() throws Exception {
     List<RoleResponse> roles = Arrays.asList(role1, role2);
     when(roleService.getAllRoles()).thenReturn(roles);
@@ -56,6 +59,8 @@ class RoleControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void getRoleById_ShouldReturnRole() throws Exception {
     when(roleService.getRoleById(1L)).thenReturn(role1);
 
@@ -66,6 +71,8 @@ class RoleControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void createRole_ShouldReturnCreatedRole() throws Exception {
     when(roleService.createRole(any())).thenReturn(role1);
 
@@ -78,6 +85,8 @@ class RoleControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void updateRole_ShouldReturnUpdatedRole() throws Exception {
     when(roleService.updateRole(anyLong(), any())).thenReturn(role2);
 
@@ -90,6 +99,8 @@ class RoleControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void deleteRole_ShouldReturnNoContent() throws Exception {
     doNothing().when(roleService).deleteRole(anyLong());
 
