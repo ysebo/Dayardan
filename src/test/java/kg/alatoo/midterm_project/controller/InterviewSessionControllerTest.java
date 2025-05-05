@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import kg.alatoo.midterm_project.controller.api.InterviewSessionController;
+import kg.alatoo.midterm_project.entity.User;
 import kg.alatoo.midterm_project.enums.Difficulty;
 import kg.alatoo.midterm_project.enums.QuestionType;
 import kg.alatoo.midterm_project.payload.request.InterviewRequest;
@@ -29,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(InterviewSessionController.class)
@@ -87,8 +89,13 @@ class InterviewSessionControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void startInterview_ShouldReturnCreatedSession() throws Exception {
-    when(interviewSessionService.startSession(anyLong())).thenReturn(sessionResponse);
+    User user1 = new User();
+    user1.setUsername("test");
+    user1.setPassword("test");
+    when(interviewSessionService.startSession(user1)).thenReturn(sessionResponse);
 
     mockMvc.perform(post("/api/interviews/start/123"))
         .andExpect(status().isCreated())
@@ -98,6 +105,8 @@ class InterviewSessionControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void getInterviewQuestions_ShouldReturnListOfQuestions() throws Exception {
     List<InterviewSessionQuestionDTO> questions = Arrays.asList(question1, question2);
     when(interviewSessionService.getSessionQuestions(anyLong())).thenReturn(questions);
@@ -138,6 +147,8 @@ class InterviewSessionControllerTest {
   }
 
   @Test
+  @WithMockUser(username = "testuser", roles = {"ADMIN"})
+
   void submitAnswer_ShouldReturnAnswerResponse() throws Exception {
     InterviewRequest request = new InterviewRequest(101L, 1L,"Java is a programming language.");
     when(interviewSessionService.submitAnswer(anyLong(), any(InterviewRequest.class)))

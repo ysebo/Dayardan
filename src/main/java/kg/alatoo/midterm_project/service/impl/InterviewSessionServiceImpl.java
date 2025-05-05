@@ -41,8 +41,8 @@ public class InterviewSessionServiceImpl implements InterviewSessionService {
   private final AnswerRepository answerRepository;
 
 
-  public InterviewSessionResponse startSession(Long userId) {
-    User user = userRepository.findById(userId)
+  public InterviewSessionResponse startSession(User sesionUser) {
+    User user = userRepository.findById(sesionUser.getId())
         .orElseThrow(() -> new NotFoundException("User not found"));
 
     InterviewSession session = new InterviewSession();

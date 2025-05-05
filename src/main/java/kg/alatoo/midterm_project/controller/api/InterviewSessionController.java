@@ -3,6 +3,7 @@ package kg.alatoo.midterm_project.controller.api;
 import jakarta.validation.Valid;
 import java.util.List;
 import kg.alatoo.midterm_project.controller.api.documentation.InterviewSessionControllerDocumentation;
+import kg.alatoo.midterm_project.entity.User;
 import kg.alatoo.midterm_project.payload.request.InterviewRequest;
 import kg.alatoo.midterm_project.payload.response.InterviewAnswerResponse;
 import kg.alatoo.midterm_project.payload.response.InterviewSessionQuestionDTO;
@@ -11,6 +12,7 @@ import kg.alatoo.midterm_project.service.InterviewSessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +23,8 @@ public class InterviewSessionController implements InterviewSessionControllerDoc
 
   private final InterviewSessionService interviewSessionService;
 
-  public ResponseEntity<InterviewSessionResponse> startInterview(@PathVariable Long userId) {
-    return new ResponseEntity<>(interviewSessionService.startSession(userId), HttpStatus.CREATED);
+  public ResponseEntity<InterviewSessionResponse> startInterview(@AuthenticationPrincipal User user) {
+    return new ResponseEntity<>(interviewSessionService.startSession(user), HttpStatus.CREATED);
   }
 
   public ResponseEntity<List<InterviewSessionQuestionDTO>> getInterviewQuestions(@PathVariable Long sessionId) {
