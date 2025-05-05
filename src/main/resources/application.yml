@@ -1,10 +1,35 @@
+jwt:
+  secret-key: mdvGWlxFwnjycwNDye9RldG+34lQUUfTZy7R5C8Ui8GZMen9721DgNg6OhpZS6EAZ9raXNfknYMxPV+rXdNz0w==
 spring:
+  security:
+    rate-limiting:
+      max-requests: 100
+      interval-minutes: 1
+      max-violations: 5
+      ip-blacklist:
+        temp-block-duration-minutes: 15
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1077962168001-kpu3jsintt2ie7as7128ovp3dv3nvmsk.apps.googleusercontent.com
+            client-secret: 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
+            scope: email,profile
+          facebook:
+            client-id: 123456789012345
+            client-secret: d61d20dad8389ea6bd1da52d8d993fabf51d2ed
+            scope: email,public_profile
+          github:
+            client-id: Ov23lioE6eUGI5ZUdCqi
+            client-secret: 8d61d20dad8389ea6bd1da52d8d993fabf51d2ed
+            scope: read:user,user:email
   profiles:
-    active: dev
+    active: prod
 
 
 ---
 spring:
+
   config:
     activate:
       on-profile: dev
